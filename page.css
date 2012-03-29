@@ -1,0 +1,170 @@
+
+
+html, body {
+  margin:0;
+  padding:0;
+}
+body {
+  font-size:62.5%;
+  font-family: Arial, Tahoma, Verdana;
+  background:#fff;
+}
+.wrap {
+  width: 800px;
+  margin: 50px auto;
+}
+
+h1 {
+  font-size:4em;
+  margin:0;
+  padding:0;
+}
+
+h1 small {
+  font-size:0.5em;
+  font-weight:normal;
+}
+
+h3 {
+  margin:0;
+  padding:5px 0px 0px 0px;
+  font-size:1.8em;
+  font-weight:normal;
+  
+}
+
+h4 {
+  margin:0;
+  padding:5px 0px 5px 0px;
+  font-size:1.2em;
+}
+
+a {
+  color:#369
+}
+
+a:hover {
+  color:#f30;
+}
+.v, .v li {
+  margin:0;
+  padding:0;
+}
+.v {
+  padding:0px 0px 10px 0px;
+}
+.v li {
+  font-size:1.3em;
+}
+.dl {
+  font-size:1.4em;
+}
+.dl {
+  padding:5px 0px 10px 0px; 
+}
+.dl A {
+  font-size:1.5em;
+  background:#090;
+  color:#fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding:2px 10px;
+  margin:0px 10px 0px -10px;
+  text-decoration:none;
+}
+
+.dl A:hover {
+  background:#ff3300;
+  color:#fff;
+}
+.p {
+  font-size:1.4em;
+  margin:5px 0px 10px 0px;
+  line-height:1.5em;
+}
+.je {
+  font-size:16em;
+  display:block;
+  float:right;
+  margin:0px 0px 10px 10px;
+  margin-top:-40px;
+}
+
+
+.lang {
+  color:#bbb;
+  font-size: 1.2em;
+  padding:10px 0px;
+}
+
+.lang a {
+  text-decoration: none;
+}
+.lang a span {
+  text-decoration: underline;
+}
+
+.code {
+  font-size:12px;
+  margin:-0px -10px;
+  padding:5px 10px;
+  border:dotted 1px #888;
+  background:#f9f9f9;
+}
+.tag {
+  color:#C64497;
+}
+.attr {
+  color:#994500;
+}
+
+.in {
+  color:#1919B5;
+}
+
+.code .in a {
+  color:#1919B5;
+}
+
+.cmt {
+  color:#999;
+}
+.footer {
+  margin:20px 0px 0px 0px;
+  padding:5px 0px;
+  font-size:1.2em;
+}
+
+.bf {
+  background:#222;
+  font-size:2em;
+  padding:5px 30px;
+  text-align:center;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  margin:20px 0px;
+  white-space: nowrap;
+}
+
+.newest {
+  background: #c00;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  padding: 0px 5px 1px 5px;
+  color: #fff;
+}
+
+.oldest {
+  color:#999;
+  font-weight: normal;
+}
+.oldest:hover {
+  color:#555;
+}
+
+.gray {
+  color:#777;
+}

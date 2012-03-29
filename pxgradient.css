@@ -1,0 +1,31 @@
+.sn-pxg .pxg-set {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+.sn-pxg span.pxg-source {
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+}
+.sn-pxg U.pxg-set, .sn-pxg U.pxg-set S, .sn-pxg U.pxg-set S B {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: inherit;
+  width: inherit;
+  position: absolute;
+  display: inline-block;
+  text-decoration: none;
+  font-weight:inherit;
+}
+.sn-pxg U.pxg-set S {
+  overflow: hidden;
+}
+.sn-pxg U.pxg-set {
+  text-decoration: none;
+  z-index: 1;
+  display:inline-block;
+  position:relative;
+}
