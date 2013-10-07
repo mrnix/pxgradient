@@ -18,7 +18,7 @@
  */
 (function($){
 
-  $('head').append('<style type="text/css">.sn-pxg .pxg-set{user-select:none;-moz-user-select:none;-webkit-user-select:none;}.sn-pxg span.pxg-source{position:relative;display:inline-block;z-index:2;}.sn-pxg U.pxg-set,.sn-pxg U.pxg-set S,.sn-pxg U.pxg-set S B{left:0;right:0;top:0;bottom:0;height:inherit;width:inherit;position:absolute;display:inline-block;text-decoration:none;font-weight:inherit;}.sn-pxg U.pxg-set S{overflow:hidden;}.sn-pxg U.pxg-set{text-decoration:none;z-index:1;display:inline-block;position:relative;}</style>')
+  $('head').append('<style type="text/css">.sn-pxg{position:relative} .sn-pxg .pxg-set{user-select:none;-moz-user-select:none;-webkit-user-select:none;}.sn-pxg span.pxg-source{position:relative;display:inline-block;}.sn-pxg U.pxg-set,.sn-pxg U.pxg-set S,.sn-pxg U.pxg-set S B{left:0;right:0;top:0;bottom:0;height:inherit;width:inherit;position:absolute;display:inline-block;text-decoration:none;font-weight:inherit;}.sn-pxg U.pxg-set S{overflow:hidden;}.sn-pxg U.pxg-set{text-decoration:none;display:inline-block;position:relative;} .pxg-select{position:relative;top:0;left:0;color:rgba(255,255,255,0);display:inline-block}</style>')
 
   $.fn.pxgradient=function(options){
     
@@ -28,64 +28,80 @@
       dir: "y"
     }, options);
 
-    options.RGBcolors = [];
+    var RGBcolors = [];
 
     for(var i=0;i<options.colors.length;i++){
-      options.RGBcolors[i] = hex2Rgb(options.colors[i]);
+      RGBcolors[i] = hex2Rgb(options.colors[i]);
     }
 
     return this.each(function(i,e){
 
       var pxg = $(e);
 
-      if(!pxg.hasClass("sn-pxg")) {
 
-        var pxg_source = pxg.html();
-        pxg
-          .html('<span class="pxg-source" style="visibility: hidden;">'+pxg_source+'</span>')
-          .append('<u class="pxg-set"></u>');
+      var pxg_source
 
-        
-        var pxg_set = pxg.find(".pxg-set");
-        var pxg_text = pxg.find(".pxg-source");
-        var pxg_w = pxg_text.innerWidth();
-        var pxg_h = pxg_text.innerHeight();
-
-        pxg_text.hide();
-        pxg.addClass("sn-pxg");
-
-        if ( options.dir == "x" ) { var blocksize = pxg_w; }
-        else if ( options.dir =="y" ) { var blocksize = pxg_h; }
-
-        var fullsteps = Math.floor( blocksize/options.step );
-        var allsteps  = fullsteps;
-        var laststep  = ( blocksize-( fullsteps * options.step) );
-        
-        if( laststep>0 ) { allsteps++; }
-
-        pxg_set.css({ width: pxg_w, height: pxg_h });
-
-        var offleft = 0;
-        var pxg_set_html = '';
-
-        if(options.dir == "x"){
-          for(var i=0; i<allsteps; i++){
-            var color = getColor ( offleft, blocksize );
-            pxg_set_html += '<s style="height:'+pxg_h+'px;width:'+options.step+'px;left:'+offleft+'px;color:'+color+'"><b style="left:-'+offleft+'px;width:'+pxg_w+'px;height:'+pxg_h+'px;">'+pxg_source+'</b></s>';
-            offleft = offleft + options.step;
-          }
-        }
-        
-        else if(options.dir=="y"){
-          for(var i=0; i<allsteps; i++){
-            var color=getColor(offleft,blocksize);
-            pxg_set_html += '<s style="width:'+pxg_w+'px;height:'+options.step+'px;top:'+offleft+'px;color:'+color+'"><b style="top:-'+offleft+'px;height:'+pxg_w+'px;height:'+pxg_h+'px;">'+pxg_source+'</b></s>';
-            offleft = offleft + options.step;
-          }
-        }
-
-        pxg_set.append(pxg_set_html);
+      if (pxg.hasClass("sn-pxg")) {
+        pxg_source = pxg.find(".pxg-source").html();
+      } else {
+        pxg_source = pxg.html();
       }
+
+      var pxg_select = $('<span class="pxg-select">'+pxg_source+'</span>')
+      
+      
+
+      pxg
+        .html('<span class="pxg-source">'+pxg_source+'</span>')
+        .append('<u class="pxg-set"></u>');
+        //.append(pxg_select);
+
+      
+      var pxg_set = pxg.find(".pxg-set");
+      var pxg_text = pxg.find(".pxg-source");
+      var pxg_w = pxg_text.innerWidth();
+      var pxg_h = pxg_text.innerHeight();
+
+
+      pxg_select.css({ width: pxg_w, height: pxg_h });
+      pxg_text.hide();
+      pxg.addClass("sn-pxg");
+
+      if ( options.dir == "x" ) { var blocksize = pxg_w; }
+      else if ( options.dir =="y" ) { var blocksize = pxg_h; }
+
+      var fullsteps = Math.floor( blocksize/options.step );
+      var allsteps  = fullsteps;
+      var laststep  = ( blocksize-( fullsteps * options.step) );
+      
+      if( laststep>0 ) { allsteps++; }
+
+      pxg_set.css({ width: pxg_w, height: pxg_h });
+      //pxg_set.css({ width: 0, height: 0 });
+
+      var offleft = 0;
+      var pxg_set_html = '';
+
+      if(options.dir == "x"){
+        for(var i=0; i<allsteps; i++){
+          var color = getColor ( offleft, blocksize );
+          pxg_set_html += '<s style="height:'+pxg_h+'px;width:'+options.step+'px;left:'+offleft+'px;color:'+color+'"><b style="left:-'+offleft+'px;width:'+pxg_w+'px;height:'+pxg_h+'px;">'+pxg_source+'</b></s>';
+          offleft = offleft + options.step;
+        }
+      }
+      
+      else if(options.dir=="y"){
+        for(var i=0; i<allsteps; i++){
+          var color=getColor(offleft,blocksize);
+          pxg_set_html += '<s style="width:'+pxg_w+'px;height:'+options.step+'px;top:'+offleft+'px;color:'+color+'"><b style="top:-'+offleft+'px;height:'+pxg_w+'px;height:'+pxg_h+'px;">'+pxg_source+'</b></s>';
+          offleft = offleft + options.step;
+        }
+      }
+
+      pxg_set.append(pxg_set_html);
+
+      
+
     });
 
     function hex2Rgb(hex){
@@ -113,7 +129,7 @@
         }
         else if(fLeft<fStopPosition){
           fCurrentStop=(fLeft-fLastPosition)/(fStopPosition-fLastPosition);
-          return getMidColor(options.RGBcolors[i-1],options.RGBcolors[i],fCurrentStop);
+          return getMidColor(RGBcolors[i-1],RGBcolors[i],fCurrentStop);
         }
       }
       return options.colors[options.colors.length-1];
